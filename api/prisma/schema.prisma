@@ -12,3 +12,19 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum Satuan {
+  pcs
+  set
+  seri
+}
+
+model tb_produk {
+  id        Int      @id @default(autoincrement())
+  kode      String   @unique @db.VarChar(10)
+  nama      String   @db.VarChar(100)
+  harga     Int
+  satuan    Satuan?
+  foto_url  String?
+  deskripsi String?  // optional
+}
