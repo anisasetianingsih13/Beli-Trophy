@@ -16,8 +16,8 @@ export default function Navbar() {
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Image src="/images/logo.png" alt="Logo" width={50} height={50} />
-          <h1 className="text-lg font-bold text-gray-900 hidden sm:block">MitraTrophy</h1>
+          <Image src="/images/trophy.jpeg" alt="Logo" width={50} height={50} />
+          <h1 className="text-lg font-bold text-gray-900 hidden sm:block">BeliTrophy</h1>
         </div>
 
         {/* Desktop Nav */}

@@ -2,7 +2,7 @@ export default function Hero() {
   return (
     <section className="flex flex-col items-center text-center px-4 py-16 bg-gradient-to-br from-gray-50 to-yellow-100">
       <h2 className="text-4xl font-bold text-gray-800">
-        Selamat Datang di <span className="text-yellow-600">Mitra Trophy</span>
+        Selamat Datang di <span className="text-yellow-600"> BeliTrophy</span>
       </h2>
       <p className="text-gray-600 mt-3 max-w-lg">
         Penyedia trophy berkualitas untuk sekolah, event, lomba, dan custom desain.
