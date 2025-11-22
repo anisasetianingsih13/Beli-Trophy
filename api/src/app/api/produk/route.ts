@@ -13,12 +13,12 @@ export const GET = async () => {
         });
         // return new NextResponse(JSON.stringify(data))
         return NextResponse.json({
-            barang: data
+            produk: data
         });
     } catch (error) {
         console.error("Terjadi kesalahan saat mengambil data:", error);
         return NextResponse.json({
-            message: "Gagal mengambil data barang",
+            message: "Gagal mengambil data produk",
             success: false,
         });
     }
@@ -45,13 +45,62 @@ export const POST = async (request: NextRequest) => {
 
         //tampilkan respon
         return NextResponse.json({
-            message: "Data Barang Berhasil Disimpan",
+            message: "Data Produk  Berhasil Disimpan",
             success: true,
         });
     } catch (error) {
         console.error("Terjadi kesalahan saat menyimpan data:", error);
         return NextResponse.json({
-            message: "Gagal menyimpan data barang",
+            message: "Gagal menyimpan data produk",
+            success: false,
+        });
+    }
+};
+//buat service PUT (UBAH DATA)
+export const PUT = async (request: NextRequest) => {
+    try {
+        const data = await request.json();
+
+        //pastikan kode produk dikirim untuk di update
+        if (!data.kode) {
+            return NextResponse.json({
+                message: "Kode produk wajib dikirim untuk update",
+                success: false,
+            });
+        }
+
+        // cari data berdasarkan kode terlebih dahulu
+        const produk = await prisma.tb_produk.findFirst({
+            where: { kode: data.kode },
+        });
+
+        if (!produk) {
+            return NextResponse.json({
+                message: "Data Produk tidak ditemukan",
+                success: false,
+            });
+        }
+
+        // ubah data sesuai id produk
+        await prisma.tb_produk.update({
+            where: { id: produk.id },
+            data: {
+                nama: data.nama,
+                harga: data.harga,
+                satuan: data.satuan,
+                foto_url: data.foto_url,
+                deskripsi: data.deskripsi,
+            },
+        });
+
+        return NextResponse.json({
+            message: "Data Produk Berhasil Diubah",
+            success: true,
+        });
+    } catch (error) {
+        console.error("Terjadi kesalahan saat mengubah data:", error);
+        return NextResponse.json({
+            message: "Gagal mengubah data produk",
             success: false,
         });
     }
