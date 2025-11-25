@@ -23,7 +23,7 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
           <NavItem label="Home" href="/" />
-          <NavItem label="Produk" href="/produk" />
+          <NavItem label="Produk" href="/product" />
           <NavItem label="Custom" href="/custom" />
           <NavItem label="Tentang" href="/tentang" />
         </nav>
@@ -49,7 +49,7 @@ export default function Navbar() {
       {openMenu && (
         <div className="md:hidden mt-2 flex flex-col gap-3 bg-gray-50 p-4 rounded-lg shadow">
           <NavMobile label="Home" href="/" />
-          <NavMobile label="Produk" href="/produk" />
+          <NavMobile label="Produk" href="/product" />
           <NavMobile label="Custom" href="/custom" />
           <NavMobile label="Tentang" href="/tentang" />
         </div>
