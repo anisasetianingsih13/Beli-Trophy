@@ -29,7 +29,7 @@ export default function AboutPage() {
         <div className="space-y-6 text-gray-800 w-full">
 
           <div>
-            <h2 className="text-2xl font-bold">SmallBee Trophie Lampung</h2>
+            <h2 className="text-2xl font-bold">SmallBee Trophy Lampung</h2>
             <p className="text-gray-600 mt-1">SmallBee Trophie Lampung menyediakan piala dan plakat berkualitas dengan desain modern dan finishing premium. Harga terjangkau, layanan cepat, dan bisa custom sesuai kebutuhan acara Anda.</p>
           </div>
 
