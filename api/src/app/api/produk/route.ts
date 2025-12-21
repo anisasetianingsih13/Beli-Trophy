@@ -108,41 +108,32 @@ export const PUT = async (request: NextRequest) => {
 //buat service DELETE (hapus data)
 export const DELETE = async (request: NextRequest) => {
     try {
-        const data = await request.json();
+        const { kode } = await request.json();
 
-        if (!data.kode) {
-            return NextResponse.json({
-                message: "Kode produk wajib dikirim untuk hapus",
-                success: false,
-            });
+        // Validasi: Pastikan kode ada di dalam request
+        if (!kode) {
+            return NextResponse.json({ 
+                message: "Kode produk harus diisi", 
+                success: false 
+            }, { status: 400 });
         }
-
-        // cari data berdasarkan kode terlebih dahulu
-        const produk = await prisma.tb_produk.findFirst({
-            where: { kode: data.kode },
-        });
-
-        if (!produk) {
-            return NextResponse.json({
-                message: "Data produk tidak ditemukan",
-                success: false,
-            });
-        }
-
-        //hapus data sesuai id produk
+        
+        // Eksekusi penghapusan
         await prisma.tb_produk.delete({
-            where: { id: produk.id },
+            where: { kode: kode },
         });
 
-        return NextResponse.json({
-            message: "Data produk Berhasil Dihapus",
-            success: true,
+        return NextResponse.json({ 
+            message: "Produk Berhasil Dihapus", 
+            success: true 
         });
     } catch (error) {
-        console.error("Terjadi kesalahan saat menghapus data:", error);
-        return NextResponse.json({
-            message: "Gagal menghapus data produk",
-            success: false,
-        });
+        // Log error di server untuk memudahkan debugging
+        console.error("Delete Error:", error);
+        
+        return NextResponse.json({ 
+            message: "Gagal menghapus: Data tidak ditemukan atau masalah server", 
+            success: false 
+        }, { status: 500 });
     }
 };

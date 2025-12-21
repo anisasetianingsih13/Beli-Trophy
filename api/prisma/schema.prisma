@@ -20,7 +20,8 @@ model tb_produk {
   kode      String   @unique @db.VarChar(10)
   nama      String   @db.VarChar(100)
   harga     Int
-  satuan    Satuan?
-  foto_url  String?
-  deskripsi String?  // optional
+  satuan    Satuan?  @default(pcs) // Tambahkan default di sini
+  foto_url  String?  @db.Text      // Gunakan Text jika URL sangat panjang
+  deskripsi String?  @db.Text      // Gunakan Text untuk deskripsi panjang
+  createdAt DateTime @default(now()) // Tambahkan ini untuk tracking
 }
