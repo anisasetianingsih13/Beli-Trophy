@@ -2,11 +2,13 @@
 
 import React from "react";
 import { Package, Users, Settings, Plus } from "lucide-react";
+import Link from "next/link"; // Import Link untuk navigasi
 
 export default function AdminDashboard() {
   const menus = [
-    { label: "Tambah Produk", icon: Plus, path: "/admin/produk/tambah" },
-    { label: "Kelola Produk", icon: Package, path: "/admin/produk" },
+    // Path disesuaikan dengan struktur folder: admin/product/add
+    { label: "Tambah Produk", icon: Plus, path: "/admin/product/add" },
+    { label: "Kelola Produk", icon: Package, path: "/admin/product" },
     { label: "Manajemen User", icon: Users, path: "/admin/user" },
     { label: "Pengaturan", icon: Settings, path: "/admin/settings" },
   ];
@@ -35,19 +37,20 @@ export default function AdminDashboard() {
         {/* ===== MENU GRID ===== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
           {menus.map((menu, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-6 hover:scale-[1.05] transition cursor-pointer"
-            >
-              <menu.icon className="w-10 h-10 text-yellow-600 mb-3" />
-              <span className="text-gray-700 font-semibold">{menu.label}</span>
-            </div>
+            <Link href={menu.path} key={index} className="block">
+              <div
+                className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-6 hover:scale-[1.05] transition cursor-pointer border border-transparent hover:border-yellow-500 h-full"
+              >
+                <menu.icon className="w-10 h-10 text-yellow-600 mb-3" />
+                <span className="text-gray-700 font-semibold text-center">{menu.label}</span>
+              </div>
+            </Link>
           ))}
         </div>
       </main>
 
       {/* ===== FOOTER ===== */}
-      <footer className="text-center py-4 text-sm text-gray-500 border-t">
+      <footer className="text-center py-4 text-sm text-gray-500 border-t bg-white">
         © 2025 BeliTrophy — Admin Panel
       </footer>
     </div>
