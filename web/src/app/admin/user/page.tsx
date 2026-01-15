@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowLeft, UserPlus, Trash2, Edit, ShieldCheck, X } from "lucide-react";
+import { ArrowLeft, UserPlus, Trash2, Edit, X } from "lucide-react";
 import Link from "next/link";
 
 export default function UserManagement() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // State users (nanti diisi dari database)
   const [users, setUsers] = useState([
     { id: 1, name: "Ahmad Owner", username: "admin_belitrophy", role: "Super Admin" },
     { id: 2, name: "Siti Staf", username: "siti_belitrophy", role: "Admin" },
@@ -14,15 +16,39 @@ export default function UserManagement() {
   // State untuk form input
   const [formData, setFormData] = useState({ name: "", username: "", role: "Admin" });
 
-  const handleAddUser = (e: React.FormEvent) => {
+  // FUNGSI UTAMA UNTUK SIMPAN DATA KE API
+  const handleAddUser = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newUser = {
-      id: users.length + 1,
-      ...formData,
-    };
-    setUsers([...users, newUser]); // Tambah ke list (sementara di client)
-    setIsModalOpen(false); // Tutup modal
-    setFormData({ name: "", username: "", role: "Admin" }); // Reset form
+
+    try {
+      const response = await fetch("http://localhost:3000/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        // Pop-up jika username sudah ada (dikirim dari backend)
+        alert("⚠️ Perhatian: " + result.message);
+        return;
+      }
+
+      // Jika berhasil
+      alert("✅ Berhasil: Admin baru telah tersimpan di database!");
+      
+      // Reset form dan tutup modal
+      setFormData({ name: "", username: "", role: "Admin" });
+      setIsModalOpen(false);
+
+      // Reload halaman agar data terbaru muncul di tabel
+      window.location.reload();
+
+    } catch (error) {
+      console.error("Koneksi gagal:", error);
+      alert("❌ Gagal terhubung ke server. Pastikan API backend sudah jalan.");
+    }
   };
 
   return (
@@ -36,7 +62,6 @@ export default function UserManagement() {
           <h1 className="text-3xl font-bold text-gray-800">Manajemen User</h1>
         </div>
 
-        {/* TOMBOL BUKA MODAL */}
         <button 
           onClick={() => setIsModalOpen(true)}
           className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition flex items-center gap-2 w-fit"
@@ -86,6 +111,7 @@ export default function UserManagement() {
                 <label className="block text-sm font-medium text-gray-700">Nama Lengkap</label>
                 <input 
                   type="text" required
+                  value={formData.name}
                   className="w-full border rounded-lg p-2 mt-1 focus:ring-2 focus:ring-yellow-500 outline-none"
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                 />
@@ -94,6 +120,7 @@ export default function UserManagement() {
                 <label className="block text-sm font-medium text-gray-700">Username</label>
                 <input 
                   type="text" required
+                  value={formData.username}
                   className="w-full border rounded-lg p-2 mt-1 focus:ring-2 focus:ring-yellow-500 outline-none"
                   onChange={(e) => setFormData({...formData, username: e.target.value})}
                 />
@@ -101,6 +128,7 @@ export default function UserManagement() {
               <div>
                 <label className="block text-sm font-medium text-gray-700">Role</label>
                 <select 
+                  value={formData.role}
                   className="w-full border rounded-lg p-2 mt-1 bg-white outline-none"
                   onChange={(e) => setFormData({...formData, role: e.target.value})}
                 >
