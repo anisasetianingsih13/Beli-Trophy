@@ -25,3 +25,11 @@ model tb_produk {
   deskripsi String?  @db.Text      // Gunakan Text untuk deskripsi panjang
   createdAt DateTime @default(now()) // Tambahkan ini untuk tracking
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  username  String   @unique
+  role      String   @default("Admin")
+  createdAt DateTime @default(now())
+}
