@@ -80,7 +80,7 @@ export default function ProdukCatalog() {
       id: 12,
       name: "Plakat Football",
       price: 100000,
-      image: "/images/star.jpg",
+      image: "/images/bolla.jpg",
     },
   ];
 
