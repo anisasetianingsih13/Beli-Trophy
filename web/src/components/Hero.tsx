@@ -27,7 +27,7 @@ export default function Hero() {
             </Link>
 
             <a
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6289699472273"
               target="_blank"
               className="bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all"
             >
