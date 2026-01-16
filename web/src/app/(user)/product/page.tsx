@@ -65,7 +65,7 @@ export default function ProdukCatalog() {
       image: "/images/p1.jpg",
     },
     {
-      id: 9,
+      id: 10,
       name: "Trophy FootBall",
       price: 150000,
       image: "/images/p1.jpg",
