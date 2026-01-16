@@ -20,7 +20,7 @@ export default function ProdukCatalog() {
       id: 2,
       name: "Trophy Silver Modern",
       price: 120000,
-      image: "/img2.jpg",
+      image: "/images/ibn.png",
     },
     {
       id: 3,
