@@ -19,9 +19,13 @@ export default function Hero() {
               Lihat Katalog
             </button>
           </a>
-            <button className="bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all">
+            <a
+              href="https://wa.me/6289699472273"
+              target="_blank"
+              className="bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all"
+            >
               Hubungi WA
-            </button>
+            </a>
           </div>
         </div>
 
