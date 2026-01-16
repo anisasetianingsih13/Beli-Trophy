@@ -50,7 +50,7 @@ export default function ProdukCatalog() {
       id: 7,
       name: "Trophy Wooden",
       price: 150000,
-      image: "/images/Renders.jpg",
+      image: "/images/Wooden.jpg",
     },
   ];
 
