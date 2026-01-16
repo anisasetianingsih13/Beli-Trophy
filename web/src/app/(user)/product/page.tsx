@@ -76,6 +76,12 @@ export default function ProdukCatalog() {
       price: 50000,
       image: "/images/star.jpg",
     },
+    {
+      id: 12,
+      name: "Plakat Star",
+      price: 50000,
+      image: "/images/star.jpg",
+    },
   ];
 
   return (
