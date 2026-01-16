@@ -30,7 +30,7 @@ export default function ProdukCatalog() {
     },
     {
       id: 4,
-      name: "Trophy Kustom ",
+      name: "Trophy Mini ",
       price: 800000,
       image: "/images/toko.jpg",
     },
