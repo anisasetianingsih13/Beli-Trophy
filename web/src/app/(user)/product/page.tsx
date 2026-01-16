@@ -67,7 +67,7 @@ export default function ProdukCatalog() {
     {
       id: 10,
       name: "Trophy Star",
-      price: 150000,
+      price: 70000,
       image: "/images/p2.jpg",
     },
   ];
