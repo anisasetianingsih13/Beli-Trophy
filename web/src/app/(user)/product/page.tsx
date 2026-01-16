@@ -43,7 +43,7 @@ export default function ProdukCatalog() {
     {
       id: 6,
       name: "Trophy Renders",
-      price: 200000,
+      price: 150000,
       image: "/images/Renders.jpg",
     },
   ];
