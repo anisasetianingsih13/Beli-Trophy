@@ -14,7 +14,7 @@ export default function ProdukCatalog() {
       id: 1,
       name: "Trophy Emas Premium",
       price: 150000,
-      image: "/img1.jpg",
+      image: "/images/hugo.png",
     },
     {
       id: 2,
