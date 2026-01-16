@@ -12,7 +12,7 @@ export default function ProdukCatalog() {
   const products: Product[] = [
     {
       id: 1,
-      name: "Trophy Emas Premium",
+      name: "Trophy Emas",
       price: 350000,
       image: "/images/hugo.png",
     },
