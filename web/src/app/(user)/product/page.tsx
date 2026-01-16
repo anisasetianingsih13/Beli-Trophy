@@ -1,4 +1,5 @@
-// produk.tsx - Sistem Katalog Pembelian Next.js
+'use client';
+
 import Image from "next/image";
 
 interface Product {
@@ -9,6 +10,8 @@ interface Product {
 }
 
 export default function ProdukCatalog() {
+  const whatsappNumber = "6289699472273"; // GANTI DENGAN NOMOR WA KAMU
+
   const products: Product[] = [
     {
       id: 1,
@@ -18,7 +21,7 @@ export default function ProdukCatalog() {
     },
     {
       id: 2,
-      name: "Trophy IBN Cup ",
+      name: "Trophy IBN Cup",
       price: 125000,
       image: "/images/ibn.png",
     },
@@ -30,13 +33,13 @@ export default function ProdukCatalog() {
     },
     {
       id: 4,
-      name: "Trophy Mini ",
+      name: "Trophy Mini",
       price: 800000,
       image: "/images/toko.jpg",
     },
     {
       id: 5,
-      name: "Plakat Mini ",
+      name: "Plakat Mini",
       price: 80000,
       image: "/images/plakat.jpg",
     },
@@ -62,7 +65,7 @@ export default function ProdukCatalog() {
       id: 9,
       name: "Trophy FootBall",
       price: 150000,
-      image: "/images/p1.jpg",
+      image: "/images/bola.jpeg",
     },
     {
       id: 10,
@@ -84,9 +87,24 @@ export default function ProdukCatalog() {
     },
   ];
 
+  const handleBuy = (product: Product) => {
+    const message = encodeURIComponent(
+      `Halo, saya ingin membeli produk berikut:
+Nama Produk: ${product.name}
+Harga: Rp ${product.price.toLocaleString()}`
+    );
+
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${message}`,
+      "_blank"
+    );
+  };
+
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">Katalog Produk thropy</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">
+        Katalog Produk Trophy
+      </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((item) => (
@@ -104,10 +122,15 @@ export default function ProdukCatalog() {
             </div>
 
             <h2 className="font-semibold text-lg">{item.name}</h2>
-            <p className="text-gray-600 mb-3">Rp {item.price.toLocaleString()}</p>
+            <p className="text-gray-600 mb-3">
+              Rp {item.price.toLocaleString()}
+            </p>
 
-            <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-              Beli Sekarang
+            <button
+              onClick={() => handleBuy(item)}
+              className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+            >
+              Beli Sekarang via WhatsApp
             </button>
           </div>
         ))}
