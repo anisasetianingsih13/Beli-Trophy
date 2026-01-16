@@ -42,7 +42,7 @@ export default function ProdukCatalog() {
     },
     {
       id: 6,
-      name: "Trophy Kustom Resin",
+      name: "Trophy Renders",
       price: 200000,
       image: "/img3.jpg",
     },
