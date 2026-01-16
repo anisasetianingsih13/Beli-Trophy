@@ -18,7 +18,7 @@ export default function ProdukCatalog() {
     },
     {
       id: 2,
-      name: "Trophy Silver ",
+      name: "Trophy IBN Cup ",
       price: 125000,
       image: "/images/ibn.png",
     },
