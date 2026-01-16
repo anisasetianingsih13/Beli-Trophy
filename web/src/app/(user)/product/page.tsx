@@ -24,7 +24,7 @@ export default function ProdukCatalog() {
     },
     {
       id: 3,
-      name: "Trophy blue",
+      name: "Trophy blue Stiker",
       price: 210000,
       image: "/images/blue.png",
     },
