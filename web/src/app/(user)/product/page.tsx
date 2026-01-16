@@ -60,7 +60,7 @@ export default function ProdukCatalog() {
     },
      {
       id: 8,
-      name: "Trophy Penghargaan",
+      name: "Trophy ",
       price: 140000,
       image: "/images/p1.jpg",
     },
