@@ -24,7 +24,7 @@ export default function ProdukCatalog() {
     },
     {
       id: 3,
-      name: "Trophy Kustom Resin",
+      name: "Trophy blue",
       price: 210000,
       image: "/images/blue.png",
     },
