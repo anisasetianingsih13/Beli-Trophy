@@ -63,54 +63,41 @@ export const POST = async (request: NextRequest) => {
     );
   }
 };
-//buat service PUT (UBAH DATA)
+
+// 4. PUT: Update data produk berdasarkan kode
 export const PUT = async (request: NextRequest) => {
-    try {
-        const data = await request.json();
+  try {
+    const data = await request.json();
 
-        //pastikan kode produk dikirim untuk di update
-        if (!data.kode) {
-            return NextResponse.json({
-                message: "Kode produk wajib dikirim untuk update",
-                success: false,
-            });
-        }
-
-        // cari data berdasarkan kode terlebih dahulu
-        const produk = await prisma.tb_produk.findFirst({
-            where: { kode: data.kode },
-        });
-
-        if (!produk) {
-            return NextResponse.json({
-                message: "Data Produk tidak ditemukan",
-                success: false,
-            });
-        }
-
-        // ubah data sesuai id produk
-        await prisma.tb_produk.update({
-            where: { id: produk.id },
-            data: {
-                nama: data.nama,
-                harga: data.harga,
-                satuan: data.satuan,
-                foto_url: data.foto_url,
-                deskripsi: data.deskripsi,
-            },
-        });
-
-        return NextResponse.json({
-            message: "Data Produk Berhasil Diubah",
-            success: true,
-        });
-    } catch (error) {
-        console.error("Terjadi kesalahan saat mengubah data:", error);
-        return NextResponse.json({
-            message: "Gagal mengubah data produk",
-            success: false,
-        });
+    if (!data.kode) {
+      return NextResponse.json(
+        { success: false, message: "Kode produk wajib diisi" },
+        { status: 400, headers: corsHeaders }
+      );
     }
+
+    const result = await prisma.tb_produk.update({
+      where: { kode: data.kode },
+      data: {
+        nama: data.nama,
+        harga: Number(data.harga),
+        satuan: data.satuan,
+        foto_url: data.foto_url,
+        deskripsi: data.deskripsi,
+      },
+    });
+
+    return NextResponse.json(
+      { success: true, message: "Data Produk Berhasil Diubah", data: result },
+      { status: 200, headers: corsHeaders }
+    );
+  } catch (error) {
+    console.error("PUT Error:", error);
+    return NextResponse.json(
+      { success: false, message: "Gagal mengubah data produk" },
+      { status: 500, headers: corsHeaders }
+    );
+  }
 };
 //buat service DELETE (hapus data)
 export const DELETE = async (request: NextRequest) => {
