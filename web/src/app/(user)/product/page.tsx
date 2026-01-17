@@ -115,11 +115,19 @@ export default function ProdukCatalog() {
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
             Katalog <span className="text-yellow-600">Trophy</span>
           </h1>
-
-            <h2 className="font-semibold text-lg">{item.name}</h2>
-            <p className="text-gray-600 mb-3">
-              Rp {item.price.toLocaleString()}
-            </p>
+                {/* Image Container */}
+                <div className="relative h-72 w-full overflow-hidden bg-gray-100">
+                  <Image
+                    src={item.foto_url || "/images/placeholder-trophy.jpg"}
+                    alt={item.nama}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute left-4 top-4 rounded-full bg-black/60 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                    {item.kode}
+                  </div>
+                </div>
 
             <button
               onClick={() => handleBuy(item)}
