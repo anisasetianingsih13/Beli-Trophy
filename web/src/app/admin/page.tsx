@@ -30,17 +30,16 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
       {/* ===== HEADER ===== */}
-      <header className="w-full bg-white shadow px-6 py-4 flex justify-between items-center">
-        <h1 className="text-lg font-bold text-gray-800">Admin Dashboard</h1>
-        {/* Tambahkan onClick pada button logout */}
+      <header className="w-full bg-white shadow-sm border-b px-8 py-4 flex justify-between items-center fixed top-0 z-10">
+        <h1 className="text-xl font-bold tracking-tight text-gray-800">BeliTrophy <span className="text-yellow-600">Admin</span></h1>
         <button 
           onClick={handleLogout}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition flex items-center gap-2"
+          className="bg-red-50 text-red-600 px-4 py-2 rounded-lg hover:bg-red-600 hover:text-white transition-all duration-200 flex items-center gap-2 font-medium"
         >
           <LogOut size={18} />
-          Logout
+          Keluar
         </button>
       </header>
 
