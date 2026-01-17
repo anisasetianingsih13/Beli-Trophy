@@ -100,11 +100,13 @@ Nama Produk: ${product.name}
 Harga: Rp ${product.price.toLocaleString()}`
     );
 
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${message}`,
-      "_blank"
+  if (isLoading) {
+    return (
+      <div className="flex h-96 items-center justify-center">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-yellow-600 border-t-transparent"></div>
+      </div>
     );
-  };
+  }
 
   return (
     <div className="p-6">
