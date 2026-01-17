@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import axios from "axios";
+import { ShoppingCart } from "lucide-react";
 
 interface Product {
   id: number;
-  name: string;
-  price: number;
-  image: string;
+  kode: string;
+  nama: string;
+  harga: number;
+  satuan?: string;
+  foto_url: string | null;
+  deskripsi?: string;
 }
 
 export default function ProdukCatalog() {
