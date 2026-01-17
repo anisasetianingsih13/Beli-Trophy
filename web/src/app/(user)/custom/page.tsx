@@ -31,19 +31,35 @@ export default function CustomPage() {
     setPreview(URL.createObjectURL(file));
   };
 
+  
+  // CONNECT KE WHATSAPP (SATU-SATUNYA TAMBAHAN)
+ 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const data = {
-      ...form,
-      foto,
-    };
+    const nomorWA = '6289699472273'; // GANTI DENGAN NOMOR WA TUJUAN
 
-    console.log('Data Pesanan:', data);
-    alert(
-      `Terima kasih ${form.nama}, pesanan custom berhasil dikirim.\nKami akan menghubungi Anda via WhatsApp: ${form.noWa}`
-    );
+    const pesan = encodeURIComponent(`
+Halo, saya ingin memesan Trophy Custom dengan detail berikut:
+
+Nama Pemesan: ${form.nama}
+No WhatsApp: ${form.noWa}
+
+Jenis Trophy: ${form.jenis}
+Bahan: ${form.bahan}
+Teks Trophy: ${form.teks}
+Jumlah: ${form.jumlah}
+
+Catatan Tambahan:
+${form.catatan || '-'}
+
+Terima kasih.
+    `);
+
+    const url = `https://wa.me/${nomorWA}?text=${pesan}`;
+    window.open(url, '_blank');
   };
+  // ===============================
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">

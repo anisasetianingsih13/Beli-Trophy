@@ -14,12 +14,18 @@ export default function Hero() {
             Penyedia trophy, medali, dan vandel berkualitas tinggi dengan desain kustom sesuai keinginan Anda.
           </p>
           <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
+            <a href="/product">
             <button className="bg-yellow-500 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-yellow-600 transition-all">
               Lihat Katalog
             </button>
-            <button className="bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all">
+          </a>
+            <a
+              href="https://wa.me/6289699472273"
+              target="_blank"
+              className="bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all"
+            >
               Hubungi WA
-            </button>
+            </a>
           </div>
         </div>
 
