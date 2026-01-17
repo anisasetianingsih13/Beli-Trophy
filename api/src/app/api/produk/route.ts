@@ -99,35 +99,32 @@ export const PUT = async (request: NextRequest) => {
     );
   }
 };
-//buat service DELETE (hapus data)
+
+// 5. DELETE: Hapus produk berdasarkan kode
 export const DELETE = async (request: NextRequest) => {
-    try {
-        const { kode } = await request.json();
+  try {
+    const { kode } = await request.json();
 
-        // Validasi: Pastikan kode ada di dalam request
-        if (!kode) {
-            return NextResponse.json({ 
-                message: "Kode produk harus diisi", 
-                success: false 
-            }, { status: 400 });
-        }
-        
-        // Eksekusi penghapusan
-        await prisma.tb_produk.delete({
-            where: { kode: kode },
-        });
-
-        return NextResponse.json({ 
-            message: "Produk Berhasil Dihapus", 
-            success: true 
-        });
-    } catch (error) {
-        // Log error di server untuk memudahkan debugging
-        console.error("Delete Error:", error);
-        
-        return NextResponse.json({ 
-            message: "Gagal menghapus: Data tidak ditemukan atau masalah server", 
-            success: false 
-        }, { status: 500 });
+    if (!kode) {
+      return NextResponse.json(
+        { success: false, message: "Kode produk harus diisi" },
+        { status: 400, headers: corsHeaders }
+      );
     }
+
+    await prisma.tb_produk.delete({
+      where: { kode: kode },
+    });
+
+    return NextResponse.json(
+      { success: true, message: "Produk Berhasil Dihapus" },
+      { status: 200, headers: corsHeaders }
+    );
+  } catch (error) {
+    console.error("DELETE Error:", error);
+    return NextResponse.json(
+      { success: false, message: "Gagal menghapus produk" },
+      { status: 500, headers: corsHeaders }
+    );
+  }
 };
