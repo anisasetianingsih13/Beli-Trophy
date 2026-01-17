@@ -1,9 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react"; // Menambah ikon plus
+import { Plus, Trash2, PackageSearch } from "lucide-react";
+
+// Definisikan struktur data agar tidak ada error
+interface Product {
+  id: number;
+  nama: string;
+  harga: number;
+  kode?: string;
+}
 
 export default function ProductListPage() {
   return (
