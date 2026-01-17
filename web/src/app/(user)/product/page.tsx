@@ -95,10 +95,10 @@ export default function ProdukCatalog() {
 
   const handleBuy = (product: Product) => {
     const message = encodeURIComponent(
-      `Halo, saya ingin membeli produk berikut:
-Nama Produk: ${product.name}
-Harga: Rp ${product.price.toLocaleString()}`
+      `Halo BeliTrophy, saya ingin bertanya tentang produk ini:\nKode: ${product.kode}\nNama: ${product.nama}\nHarga: Rp ${product.harga.toLocaleString()} / ${product.satuan || 'pcs'}`
     );
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+  };
 
   if (isLoading) {
     return (
