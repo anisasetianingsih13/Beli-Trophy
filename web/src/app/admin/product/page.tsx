@@ -23,11 +23,20 @@ export default function ProductListPage() {
 
   useEffect(() => {
     const fetchProducts = async () => {
+      if (!API_BASE) {
+        console.warn("API URL tidak ditemukan di .env");
+        setLoading(false);
+        return;
+      }
+
       try {
-        const res = await axios.get("http://localhost:3001/api/produk");
-        // Sesuaikan dengan struktur response API Anda (contoh: res.data.data)
-        if (res.data.success) {
-          setProducts(res.data.data);
+        setLoading(true);
+        // Menggunakan URL yang sama persis dengan sisi User
+        const res = await axios.get(API_URL_PRODUK);
+        
+        if (res.data && res.data.success) {
+          // Mengambil key 'produk' sesuai standar backend Anda
+          setProducts(res.data.produk); 
         }
       } catch (err) {
         console.error("Gagal mengambil data produk:", err);
