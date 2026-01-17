@@ -15,6 +15,28 @@ interface Product {
 }
 
 export default function ProductListPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Ambil data dari API saat halaman dimuat
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get("http://localhost:3001/api/produk");
+        // Sesuaikan dengan struktur response API Anda (contoh: res.data.data)
+        if (res.data.success) {
+          setProducts(res.data.data);
+        }
+      } catch (err) {
+        console.error("Gagal mengambil data produk:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
       <div className="flex justify-between items-center mb-6">
