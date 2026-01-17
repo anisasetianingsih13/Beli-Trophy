@@ -39,19 +39,39 @@ export default function ProductListPage() {
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
+      {/* HEADER SECTION */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Daftar Produk Trophy</h1>
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800">Daftar Produk Trophy</h1>
+          <p className="text-sm text-gray-500">Kelola katalog produk BeliTrophy Anda</p>
+        </div>
         
         <Link href="/admin/product/add">
-          {/* Perbaikan Class Button sesuai permintaan Anda */}
-          <Button className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition flex items-center gap-2 w-fit border-none shadow-sm">
+          <Button className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition flex items-center gap-2 w-fit border-none shadow-sm font-semibold">
             <Plus size={18} /> Tambah Produk
           </Button>
         </Link>
       </div>
 
-      <div className="bg-white p-12 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center">
-        <p className="text-gray-500 italic">Belum ada data produk untuk ditampilkan.</p>
+      {/* TABLE SECTION */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        {loading ? (
+          <div className="p-12 text-center text-gray-400">Memuat data produk...</div>
+        ) : products.length === 0 ? (
+          <div className="p-12 flex flex-col items-center justify-center text-center">
+            <PackageSearch size={48} className="text-gray-200 mb-3" />
+            <p className="text-gray-500 italic">Belum ada data produk untuk ditampilkan.</p>
+          </div>
+        ) : (
+          <table className="w-full text-left border-collapse">
+            <thead className="bg-gray-50 border-b border-gray-100">
+              <tr>
+                <th className="p-4 text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama Produk</th>
+                <th className="p-4 text-sm font-semibold text-gray-600 uppercase tracking-wider">Harga</th>
+                <th className="p-4 text-center text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-50">
       </div>
     </div>
   );
