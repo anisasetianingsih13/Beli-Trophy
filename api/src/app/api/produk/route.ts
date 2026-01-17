@@ -35,37 +35,33 @@ export const GET = async () => {
   }
 };
 
-//buat service POST (simpan data)
+// 3. POST: Tambah produk baru
 export const POST = async (request: NextRequest) => {
-    try {
-        // baca data hasil request
-        // ubah dalam format json
-        const data = await request.json();
+  try {
+    const data = await request.json();
 
-        //simpan data sesuai request
-        await prisma.tb_produk.create({
-            data: {
-                kode: data.kode,
-                nama: data.nama,
-                harga: data.harga,
-                satuan: data.satuan || "pcs", //bisa enum "pcs" / "unit" /"seri"
-                foto_url: data.foto_url,
-                deskripsi: data.deskripsi
-            },
-        });
+    const result = await prisma.tb_produk.create({
+      data: {
+        kode: data.kode,
+        nama: data.nama,
+        harga: Number(data.harga),
+        satuan: data.satuan || "pcs",
+        foto_url: data.foto_url,
+        deskripsi: data.deskripsi,
+      },
+    });
 
-        //tampilkan respon
-        return NextResponse.json({
-            message: "Data Produk  Berhasil Disimpan",
-            success: true,
-        });
-    } catch (error) {
-        console.error("Terjadi kesalahan saat menyimpan data:", error);
-        return NextResponse.json({
-            message: "Gagal menyimpan data produk",
-            success: false,
-        });
-    }
+    return NextResponse.json(
+      { success: true, message: "Data Produk Berhasil Disimpan", data: result },
+      { status: 201, headers: corsHeaders }
+    );
+  } catch (error) {
+    console.error("POST Error:", error);
+    return NextResponse.json(
+      { success: false, message: "Gagal menyimpan data produk" },
+      { status: 500, headers: corsHeaders }
+    );
+  }
 };
 //buat service PUT (UBAH DATA)
 export const PUT = async (request: NextRequest) => {
