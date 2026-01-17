@@ -78,6 +78,19 @@ export default function ProductListPage() {
                   <td className="p-4 text-gray-600">
                     Rp {p.harga?.toLocaleString("id-ID") ?? "0"}
                   </td>
+                  <td className="p-4 flex justify-center">
+                    <button 
+                      className="p-2 text-red-500 hover:bg-red-50 rounded-full transition-colors"
+                      title="Hapus Produk"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
