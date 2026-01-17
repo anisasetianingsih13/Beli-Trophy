@@ -2,6 +2,19 @@ import { PrismaClient } from "@/generated/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
+
+// MODIFIKASI: Menggunakan '*' agar mendukung akses via IP Address (CORS)
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*", 
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
+// 1. OPTIONS: Menangani Preflight Request
+export const OPTIONS = async () => {
+  return NextResponse.json({}, { headers: corsHeaders });
+};
+
 export const GET = async () => {
     try {
 
