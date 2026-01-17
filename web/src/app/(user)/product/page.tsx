@@ -69,7 +69,7 @@ export default function ProdukCatalog() {
         {products.length === 0 ? (
           <div className="py-20 text-center bg-white rounded-3xl shadow-inner border border-dashed border-gray-200">
             <p className="text-gray-400 italic text-lg">Katalog sedang diperbarui, silakan kembali nanti.</p>
-            <p className="text-xs text-gray-300 mt-2">Cek koneksi ke http://192.168.1.6:3001/api/produk</p>
+            <p className="text-xs text-gray-300 mt-2">Cek koneksi ke http://192.168.1.6:3001/api/produk atau ip koneksi anda:ip.port/api/produk </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
