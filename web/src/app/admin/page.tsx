@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Package, Users, Settings, Plus, LogOut } from "lucide-react"; // Tambahkan LogOut icon
+import { Package, Users, Plus, LogOut } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboard() {
   const router = useRouter();
