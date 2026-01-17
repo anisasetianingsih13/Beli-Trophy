@@ -16,6 +16,10 @@ interface Product {
 }
 
 export default function ProdukCatalog() {
+  const whatsappNumber = "6289699472273";
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchProduk = async () => {
       try {
