@@ -15,26 +15,24 @@ export const OPTIONS = async () => {
   return NextResponse.json({}, { headers: corsHeaders });
 };
 
+// 2. GET: Ambil semua data produk
 export const GET = async () => {
-    try {
+  try {
+    const data = await prisma.tb_produk.findMany({
+      orderBy: { kode: "desc" },
+    });
 
-        // ambil data dari tb_produk
-        const data = await prisma.tb_produk.findMany({
-            orderBy: {
-                kode: "desc" //ini adalah contoh penulisan orm prisma dalam menerapkan perintah pengurutan
-            },
-        });
-        // return new NextResponse(JSON.stringify(data))
-        return NextResponse.json({
-            produk: data
-        });
-    } catch (error) {
-        console.error("Terjadi kesalahan saat mengambil data:", error);
-        return NextResponse.json({
-            message: "Gagal mengambil data produk",
-            success: false,
-        });
-    }
+    return NextResponse.json(
+      { success: true, produk: data },
+      { status: 200, headers: corsHeaders }
+    );
+  } catch (error) {
+    console.error("GET Error:", error);
+    return NextResponse.json(
+      { success: false, message: "Gagal mengambil data produk" },
+      { status: 500, headers: corsHeaders }
+    );
+  }
 };
 
 //buat service POST (simpan data)
