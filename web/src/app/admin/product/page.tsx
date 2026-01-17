@@ -6,12 +6,11 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2, PackageSearch } from "lucide-react";
 
-// Definisikan struktur data agar tidak ada error
 interface Product {
   id: number;
+  kode: string;
   nama: string;
   harga: number;
-  kode?: string;
 }
 
 export default function ProductListPage() {
