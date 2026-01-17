@@ -68,9 +68,9 @@ export default function ProductListPage() {
           <table className="w-full text-left border-collapse">
             <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
-                <th className="p-4 text-sm font-semibold text-gray-600 uppercase tracking-wider">Nama Produk</th>
-                <th className="p-4 text-sm font-semibold text-gray-600 uppercase tracking-wider">Harga</th>
-                <th className="p-4 text-center text-sm font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+                <th className="p-4 text-sm font-semibold text-gray-600 uppercase">Nama Produk</th>
+                <th className="p-4 text-sm font-semibold text-gray-600 uppercase">Harga</th>
+                <th className="p-4 text-center text-sm font-semibold text-gray-600 uppercase">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
