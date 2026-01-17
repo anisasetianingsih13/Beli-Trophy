@@ -72,6 +72,12 @@ export default function ProductListPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
+              {products.map((p) => (
+                <tr key={p.id} className="hover:bg-gray-50 transition-colors">
+                  <td className="p-4 text-gray-800 font-medium">{p.nama}</td>
+                  <td className="p-4 text-gray-600">
+                    Rp {p.harga?.toLocaleString("id-ID") ?? "0"}
+                  </td>
       </div>
     </div>
   );
