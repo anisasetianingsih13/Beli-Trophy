@@ -9,7 +9,6 @@ export default function AdminDashboard() {
   const router = useRouter();
 
   const handleLogout = async () => {
-    // 1. Panggil API logout (kita akan buat ini setelah ini)
     const res = await fetch("/api/admin/logout", {
       method: "POST",
     });
@@ -26,7 +25,6 @@ export default function AdminDashboard() {
     { label: "Tambah Produk", icon: Plus, path: "/admin/product/add" },
     { label: "Kelola Produk", icon: Package, path: "/admin/product" },
     { label: "Manajemen User", icon: Users, path: "/admin/user" },
-    { label: "Pengaturan", icon: Settings, path: "/admin/settings" },
   ];
 
   return (
