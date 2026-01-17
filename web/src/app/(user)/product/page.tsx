@@ -115,6 +115,23 @@ export default function ProdukCatalog() {
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
             Katalog <span className="text-yellow-600">Trophy</span>
           </h1>
+          <p className="mt-4 text-lg text-gray-600">
+            Koleksi penghargaan berkualitas untuk setiap pencapaian luar biasa.
+          </p>
+        </header>
+
+        {products.length === 0 ? (
+          <div className="py-20 text-center bg-white rounded-3xl shadow-inner border border-dashed border-gray-200">
+            <p className="text-gray-400 italic text-lg">Katalog sedang diperbarui, silakan kembali nanti.</p>
+            <p className="text-xs text-gray-300 mt-2">Cek koneksi ke http://192.168.1.6:3001/api/produk</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {products.map((item) => (
+              <div
+                key={item.id}
+                className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100"
+              >
                 {/* Image Container */}
                 <div className="relative h-72 w-full overflow-hidden bg-gray-100">
                   <Image
