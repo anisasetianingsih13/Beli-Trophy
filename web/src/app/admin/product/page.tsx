@@ -17,7 +17,10 @@ export default function ProductListPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Ambil data dari API saat halaman dimuat
+  // MENYAMAKAN CARA PEMANGGILAN DENGAN USER
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
+  const API_URL_PRODUK = `${API_BASE}/produk`;
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
