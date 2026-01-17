@@ -50,7 +50,6 @@ export default function ProductListPage() {
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
-      {/* HEADER SECTION */}
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">Daftar Produk Trophy</h1>
@@ -58,7 +57,7 @@ export default function ProductListPage() {
         </div>
         
         <Link href="/admin/product/add">
-          <Button className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition flex items-center gap-2 w-fit border-none shadow-sm font-semibold">
+          <Button className="bg-yellow-600 text-white hover:bg-yellow-700 flex items-center gap-2">
             <Plus size={18} /> Tambah Produk
           </Button>
         </Link>
