@@ -129,6 +129,25 @@ export default function ProdukCatalog() {
                   </div>
                 </div>
 
+                {/* Content Section */}
+                <div className="flex flex-1 flex-col p-6">
+                  <h2 className="mb-2 text-xl font-bold text-gray-800 line-clamp-1 min-h-[1.75rem]">
+                    {item.nama}
+                  </h2>
+
+                  <div className="flex items-baseline gap-1 mb-4">
+                    <span className="text-2xl font-black text-yellow-600">
+                      Rp {item.harga.toLocaleString('id-ID')}
+                    </span>
+                    <span className="text-sm font-semibold text-gray-400 uppercase">
+                      / {item.satuan || 'pcs'}
+                    </span>
+                  </div>
+
+                  <p className="mb-6 text-sm leading-relaxed text-gray-500 line-clamp-3 min-h-[3.75rem]">
+                    {item.deskripsi || "Penghargaan elegan dengan kualitas premium, sangat cocok untuk momen istimewa Anda."}
+                  </p>
+
                   <button
                     onClick={() => handleBuy(item)}
                     className="mt-auto flex w-full items-center justify-center gap-3 rounded-2xl bg-green-600 py-4 text-sm font-bold text-white shadow-lg shadow-green-200 transition-all hover:bg-green-700 hover:shadow-green-300 active:scale-95"
