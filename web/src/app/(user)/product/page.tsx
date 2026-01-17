@@ -129,14 +129,18 @@ export default function ProdukCatalog() {
                   </div>
                 </div>
 
-            <button
-              onClick={() => handleBuy(item)}
-              className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
-            >
-              Beli Sekarang via WhatsApp
-            </button>
+                  <button
+                    onClick={() => handleBuy(item)}
+                    className="mt-auto flex w-full items-center justify-center gap-3 rounded-2xl bg-green-600 py-4 text-sm font-bold text-white shadow-lg shadow-green-200 transition-all hover:bg-green-700 hover:shadow-green-300 active:scale-95"
+                  >
+                    <ShoppingCart size={20} />
+                    Pesan Sekarang
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
