@@ -1,20 +1,123 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
+import { Plus, Trash2, PackageSearch } from "lucide-react";
+
+interface Product {
+  id: number;
+  kode: string;
+  nama: string;
+  harga: number;
+}
 
 export default function ProductListPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // MENYAMAKAN CARA PEMANGGILAN DENGAN USER
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
+  const API_URL_PRODUK = `${API_BASE}/produk`;
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      if (!API_BASE) {
+        console.warn("API URL tidak ditemukan di .env");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        setLoading(true);
+        // Menggunakan URL yang sama persis dengan sisi User
+        const res = await axios.get(API_URL_PRODUK);
+        
+        if (res.data && res.data.success) {
+          // Mengambil key 'produk' sesuai standar backend Anda
+          setProducts(res.data.produk); 
+        }
+      } catch (err) {
+        console.error("Gagal mengambil data produk:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [API_URL_PRODUK, API_BASE]);
+
+  const handleDelete = async (kode: string) => {
+    if (confirm(`Apakah Anda yakin ingin menghapus produk ${kode}?`)) {
+      try {
+        await axios.delete(API_URL_PRODUK, { data: { kode } });
+        setProducts(products.filter((p) => p.kode !== kode));
+        alert("Produk berhasil dihapus");
+      } catch (err) {
+        alert("Gagal menghapus produk");
+      }
+    }
+  };
+
   return (
-    <div className="p-8">
+    <div className="p-8 bg-gray-50 min-h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Daftar Produk Trophy</h1>
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800">Daftar Produk Trophy</h1>
+          <p className="text-sm text-gray-500">Kelola katalog produk BeliTrophy Anda</p>
+        </div>
+        
         <Link href="/admin/product/add">
-          <Button className="bg-blue-600 text-white">+ Tambah Produk</Button>
+          <Button className="bg-yellow-600 text-white hover:bg-yellow-700 flex items-center gap-2">
+            <Plus size={18} /> Tambah Produk
+          </Button>
         </Link>
       </div>
-      <div className="bg-white p-6 rounded-lg shadow">
-        <p className="text-gray-500 italic">Belum ada data produk untuk ditampilkan.</p>
+
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        {loading ? (
+          <div className="p-12 text-center text-gray-400">Memuat data produk...</div>
+        ) : products.length === 0 ? (
+          <div className="p-12 flex flex-col items-center justify-center text-center">
+            <PackageSearch size={48} className="text-gray-200 mb-3" />
+            <p className="text-gray-500 italic">Belum ada data produk di database.</p>
+            <p className="text-[10px] text-gray-400 mt-2">API: {API_URL_PRODUK}</p>
+          </div>
+        ) : (
+          <table className="w-full text-left border-collapse">
+            <thead className="bg-gray-50 border-b border-gray-100">
+              <tr>
+                <th className="p-4 text-sm font-semibold text-gray-600 uppercase">Nama Produk</th>
+                <th className="p-4 text-sm font-semibold text-gray-600 uppercase">Harga</th>
+                <th className="p-4 text-center text-sm font-semibold text-gray-600 uppercase">Aksi</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-50">
+              {products.map((p) => (
+                <tr key={p.kode} className="hover:bg-gray-50 transition-colors text-gray-900">
+                  <td className="p-4">
+                    <div className="flex flex-col">
+                      <span className="font-bold">{p.nama}</span>
+                      <span className="text-[10px] text-gray-400 font-mono">{p.kode}</span>
+                    </div>
+                  </td>
+                  <td className="p-4">
+                    Rp {p.harga?.toLocaleString("id-ID") ?? "0"}
+                  </td>
+                  <td className="p-4 flex justify-center">
+                    <button 
+                      onClick={() => handleDelete(p.kode)}
+                      className="p-2 text-red-500 hover:bg-red-50 rounded-full transition-colors"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

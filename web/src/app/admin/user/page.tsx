@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowLeft, UserPlus, Trash2, Edit, X } from "lucide-react";
+import { ArrowLeft, UserPlus, Trash2, Edit, X, User, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 export default function UserManagement() {
@@ -97,48 +97,89 @@ export default function UserManagement() {
         </table>
       </div>
 
-      {/* ===== MODAL POP-UP ===== */}
+     {/* ===== MODAL POP-UP (VERSI PREMIUM) ===== */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-2xl">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Tambah Admin Baru</h2>
-              <button onClick={() => setIsModalOpen(false)}><X className="text-gray-500" /></button>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-300">
+          <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl border border-gray-100 overflow-hidden transform animate-in zoom-in-95 duration-200">
+            
+            {/* Header Modal dengan Aksen Kuning */}
+            <div className="bg-yellow-600 p-6 text-white flex justify-between items-center">
+              <div>
+                <h2 className="text-xl font-bold flex items-center gap-2">
+                  <UserPlus size={22} />
+                  Tambah Admin Baru
+                </h2>
+                <p className="text-yellow-100 text-xs mt-1">Lengkapi data untuk akses dashboard</p>
+              </div>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="hover:bg-yellow-700 p-1 rounded-full transition-colors"
+              >
+                <X size={24} />
+              </button>
             </div>
 
-            <form onSubmit={handleAddUser} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                <input 
-                  type="text" required
-                  value={formData.name}
-                  className="w-full border rounded-lg p-2 mt-1 focus:ring-2 focus:ring-yellow-500 outline-none"
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                />
+            {/* Form Area */}
+            <form onSubmit={handleAddUser} className="p-6 space-y-5">
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-gray-700 ml-1">Nama Lengkap</label>
+                <div className="relative">
+                  <Edit className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                  <input 
+                    type="text" required
+                    placeholder="Contoh: Ahmad Owner"
+                    value={formData.name}
+                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-yellow-500 outline-none transition-all"
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Username</label>
-                <input 
-                  type="text" required
-                  value={formData.username}
-                  className="w-full border rounded-lg p-2 mt-1 focus:ring-2 focus:ring-yellow-500 outline-none"
-                  onChange={(e) => setFormData({...formData, username: e.target.value})}
-                />
+
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-gray-700 ml-1">Username</label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                  <input 
+                    type="text" required
+                    placeholder="admin_belitrophy"
+                    value={formData.username}
+                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-yellow-500 outline-none transition-all"
+                    onChange={(e) => setFormData({...formData, username: e.target.value})}
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Role</label>
-                <select 
-                  value={formData.role}
-                  className="w-full border rounded-lg p-2 mt-1 bg-white outline-none"
-                  onChange={(e) => setFormData({...formData, role: e.target.value})}
+
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-gray-700 ml-1">Role Jabatan</label>
+                <div className="relative">
+                  <ShieldCheck className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                  <select 
+                    value={formData.role}
+                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl appearance-none focus:ring-2 focus:ring-yellow-500 outline-none transition-all cursor-pointer"
+                    onChange={(e) => setFormData({...formData, role: e.target.value})}
+                  >
+                    <option value="Admin">Admin</option>
+                    <option value="Super Admin">Super Admin</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-2">
+                <button 
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-600 rounded-xl font-semibold hover:bg-gray-50 transition-colors"
                 >
-                  <option value="Admin">Admin</option>
-                  <option value="Super Admin">Super Admin</option>
-                </select>
+                  Batal
+                </button>
+                <button 
+                  type="submit" 
+                  className="flex-[2] bg-yellow-600 text-white py-2.5 rounded-xl font-bold hover:bg-yellow-700 shadow-lg shadow-yellow-600/20 transition-all active:scale-95"
+                >
+                  Simpan Admin
+                </button>
               </div>
-              <button type="submit" className="w-full bg-yellow-600 text-white py-2 rounded-lg font-semibold hover:bg-yellow-700 transition">
-                Simpan Admin
-              </button>
             </form>
           </div>
         </div>
