@@ -109,25 +109,12 @@ export default function ProdukCatalog() {
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">
-        Katalog Produk Trophy
-      </h1>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products.map((item) => (
-          <div
-            key={item.id}
-            className="border rounded-xl shadow-md p-4 hover:shadow-lg transition bg-white"
-          >
-            <div className="w-full h-48 relative mb-3">
-              <Image
-                src={item.image}
-                alt={item.name}
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
+    <div className="min-h-screen bg-gray-50 p-6">
+      <div className="mx-auto max-w-7xl">
+        <header className="mb-12 text-center">
+          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+            Katalog <span className="text-yellow-600">Trophy</span>
+          </h1>
 
             <h2 className="font-semibold text-lg">{item.name}</h2>
             <p className="text-gray-600 mb-3">
