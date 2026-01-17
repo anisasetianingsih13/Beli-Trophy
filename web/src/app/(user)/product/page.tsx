@@ -16,82 +16,24 @@ interface Product {
 }
 
 export default function ProdukCatalog() {
-  const whatsappNumber = "6289699472273"; // GANTI DENGAN NOMOR WA KAMU
-
-  const products: Product[] = [
-    {
-      id: 1,
-      name: "Trophy Hugo",
-      price: 350000,
-      image: "/images/hugo.png",
-    },
-    {
-      id: 2,
-      name: "Trophy IBN Cup",
-      price: 125000,
-      image: "/images/ibn.png",
-    },
-    {
-      id: 3,
-      name: "Trophy blue Stiker",
-      price: 210000,
-      image: "/images/blue.png",
-    },
-    {
-      id: 4,
-      name: "Trophy Mini",
-      price: 800000,
-      image: "/images/toko.jpg",
-    },
-    {
-      id: 5,
-      name: "Plakat Mini",
-      price: 80000,
-      image: "/images/plakat.jpg",
-    },
-    {
-      id: 6,
-      name: "Trophy Renders",
-      price: 150000,
-      image: "/images/Renders.jpg",
-    },
-    {
-      id: 7,
-      name: "Trophy Wooden",
-      price: 150000,
-      image: "/images/Wooden.jpg",
-    },
-    {
-      id: 8,
-      name: "Trophy Penghargaan",
-      price: 140000,
-      image: "/images/p1.jpg",
-    },
-    {
-      id: 9,
-      name: "Trophy FootBall",
-      price: 150000,
-      image: "/images/bola.jpeg",
-    },
-    {
-      id: 10,
-      name: "Trophy Star",
-      price: 70000,
-      image: "/images/p2.jpg",
-    },
-    {
-      id: 11,
-      name: "Plakat Star",
-      price: 50000,
-      image: "/images/star.jpg",
-    },
-    {
-      id: 12,
-      name: "Plakat Football",
-      price: 100000,
-      image: "/images/bolla.jpg",
-    },
-  ];
+  useEffect(() => {
+    const fetchProduk = async () => {
+      try {
+        // MENGGUNAKAN IP ADDRESS (Sesuai dengan akses browser Anda)
+        // Pastikan port 3001 sudah berjalan
+        const response = await axios.get("http://192.168.1.6:3001/api/produk");
+        
+        if (response.data && response.data.produk) {
+          setProducts(response.data.produk);
+        }
+      } catch (error) {
+        console.error("Gagal memuat katalog:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProduk();
+  }, []);
 
   const handleBuy = (product: Product) => {
     const message = encodeURIComponent(
