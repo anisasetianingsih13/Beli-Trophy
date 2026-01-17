@@ -46,7 +46,19 @@ export default function ProductListPage() {
     };
 
     fetchProducts();
-  }, []);
+  }, [API_URL_PRODUK, API_BASE]);
+
+  const handleDelete = async (kode: string) => {
+    if (confirm(`Apakah Anda yakin ingin menghapus produk ${kode}?`)) {
+      try {
+        await axios.delete(API_URL_PRODUK, { data: { kode } });
+        setProducts(products.filter((p) => p.kode !== kode));
+        alert("Produk berhasil dihapus");
+      } catch (err) {
+        alert("Gagal menghapus produk");
+      }
+    }
+  };
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
