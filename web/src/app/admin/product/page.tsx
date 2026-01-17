@@ -64,14 +64,14 @@ export default function ProductListPage() {
         </Link>
       </div>
 
-      {/* TABLE SECTION */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-gray-400">Memuat data produk...</div>
         ) : products.length === 0 ? (
           <div className="p-12 flex flex-col items-center justify-center text-center">
             <PackageSearch size={48} className="text-gray-200 mb-3" />
-            <p className="text-gray-500 italic">Belum ada data produk untuk ditampilkan.</p>
+            <p className="text-gray-500 italic">Belum ada data produk di database.</p>
+            <p className="text-[10px] text-gray-400 mt-2">API: {API_URL_PRODUK}</p>
           </div>
         ) : (
           <table className="w-full text-left border-collapse">
