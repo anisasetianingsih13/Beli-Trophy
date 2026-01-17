@@ -43,15 +43,22 @@ export default function AdminDashboard() {
         </button>
       </header>
 
-      {/* ... (sisa kode body dan footer tetap sama) ... */}
-      <main className="flex-grow">
-        <h2 className="text-2xl font-bold text-gray-800 px-6 mt-6">Selamat Datang Admin 👋</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+      {/* ===== MAIN CONTENT (RATA TENGAH) ===== */}
+      <main className="flex-grow flex flex-col items-center justify-center p-6 mt-16">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-gray-800">Selamat Datang, Admin 👋</h2>
+          <p className="text-gray-500 mt-2">Pilih menu di bawah untuk mulai mengelola sistem</p>
+        </div>
+
+        {/* Container Menu Rata Tengah */}
+        <div className="flex flex-wrap justify-center gap-8 max-w-5xl">
           {menus.map((menu, index) => (
-            <Link href={menu.path} key={index} className="block">
-              <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-6 hover:scale-[1.05] transition cursor-pointer border border-transparent hover:border-yellow-500 h-full">
-                <menu.icon className="w-10 h-10 text-yellow-600 mb-3" />
-                <span className="text-gray-700 font-semibold text-center">{menu.label}</span>
+            <Link href={menu.path} key={index} className="w-full sm:w-64">
+              <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-2xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-gray-100 hover:border-yellow-500 h-60">
+                <div className="p-4 bg-yellow-50 rounded-full mb-4">
+                  <menu.icon className="w-12 h-12 text-yellow-600" />
+                </div>
+                <span className="text-gray-800 font-bold text-lg text-center">{menu.label}</span>
               </div>
             </Link>
           ))}
