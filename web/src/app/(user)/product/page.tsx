@@ -25,7 +25,7 @@ export default function ProdukCatalog() {
       try {
         // MENGGUNAKAN IP ADDRESS (Sesuai dengan akses browser Anda)
         // Pastikan port 3001 sudah berjalan
-        const response = await axios.get("http://192.168.1.6:3001/api/produk");
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/produk`);
         
         if (response.data && response.data.produk) {
           setProducts(response.data.produk);
