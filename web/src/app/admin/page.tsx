@@ -15,9 +15,8 @@ export default function AdminDashboard() {
     });
 
     if (res.ok) {
-      // 2. Jika berhasil hapus cookie, pindah ke halaman login
       router.push("/admin/login");
-      router.refresh(); // Segarkan halaman untuk memastikan middleware bekerja
+      router.refresh();
     } else {
       alert("Gagal logout, silakan coba lagi.");
     }
